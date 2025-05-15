@@ -1,5 +1,9 @@
 package com.example
 
+import com.example.ioc.configureFrameworks
+import com.example.jcref.MainFrame
+import com.example.plugin.configureSerialization
+import com.example.router.configureRouting
 import io.ktor.server.application.*
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
