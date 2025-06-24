@@ -27,6 +27,8 @@ dependencies {
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
     implementation("io.ktor:ktor-server-netty")
+    implementation("io.ktor:ktor-client-core")
+    implementation("io.ktor:ktor-client-cio")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.github.ollama4j:ollama4j:1.0.100")
     implementation("io.ktor:ktor-server-config-yaml")
@@ -59,11 +61,25 @@ tasks.register<Copy>("copyJre") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
+tasks.register<Copy>("copyOllama") {
+    from("ollama")
+    into("${getLayout().buildDirectory.get()}/libs/ollama")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.register<Copy>("copyModels") {
+    from("models")
+    into("${getLayout().buildDirectory.get()}/libs/models")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
 // 确保 createExe 任务在 jar 之后执行
 tasks.named("createExe") {
-
     dependsOn(tasks.named("jar"))
     finalizedBy(tasks.named("copyJre"))
+    finalizedBy(tasks.named("copyOllama"))
+    finalizedBy(tasks.named("copyModels"))
 }
 
 // 添加 Inno Setup 打包任务

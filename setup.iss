@@ -7,6 +7,7 @@ AppName={#MyAppName}
 DefaultGroupName={#MyAppName}
 OutputDir=./build/windows
 OutputBaseFilename=ai_demo-Setup
+DiskSpanning=yes
 Compression=lzma2
 SolidCompression=yes
 
@@ -23,6 +24,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "build\libs\*.exe"; DestDir: "{app}"
 Source: "build\libs\lib\*"; DestDir: "{app}\lib"
 Source: "build\libs\*.jar"; DestDir: "{app}"
+Source: "build\libs\ollama\*"; DestDir: "{app}\ollama";Flags: recursesubdirs
+Source: "build\libs\models\*"; DestDir: "{app}\models";Flags: recursesubdirs
 Source: "build\libs\jre\*"; DestDir: "{app}\jre";Flags: recursesubdirs
 
 

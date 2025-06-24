@@ -1,4 +1,4 @@
-package com.example
+package com.example.jcref
 
 import com.jetbrains.cef.JCefAppConfig
 import org.cef.CefApp
@@ -12,8 +12,6 @@ import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
 import javax.swing.JFrame
 import kotlin.concurrent.Volatile
-import kotlin.jvm.java
-
 
 class MainFrame : JFrame() {
     private val url = "http://127.0.0.1:8080"
